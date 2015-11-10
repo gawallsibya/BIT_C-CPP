@@ -1,0 +1,110 @@
+//person.h
+
+#ifndef _PERSON_H_
+#define _PERSON_H_
+
+class Person
+{
+	char name[20];
+	char phone[30];
+public:
+	Person()	{} 
+	Person(const char* n, const char* p);
+
+	void SetName(char* n)		{ strcpy(name, n);	}
+	void SetPhone(char* p)		{ strcpy(phone, p);	}
+	const char*GetName()  const	{ return name;		}
+	const char*GetPhoen() const { return phone;		}
+
+	void DataPrint() const;
+};
+
+
+#endif /*_PERSON_H_*/
+
+//person.cpp
+#include "std.h"
+#include "person.h"
+
+Person::Person(const char* n, const char* p)
+{
+	strcpy(name, n);
+	strcpy(phone, p);
+}
+
+void Person::DataPrint() const
+{
+	cout << "[이름] " << name << "\t[전화번호] " << phone << endl; 
+}
+
+//std.h
+
+#include <iostream>
+using namespace std;
+
+
+//main.cpp
+
+#include "std.h"
+#include "telphonebook.h"
+
+TelPhoneBook tb;
+
+void app_init()
+{
+	system("cls");
+	cout << "**********************************" << endl; 
+	cout << "* CPP 프로그램 실습1             *" << endl; 
+	cout << "* 클래스 구현 실습               *" << endl;
+	cout << "* 2012.11.1                      *" << endl;
+	cout << "* CCM                            *" << endl;
+	cout << "**********************************" << endl;
+	system("pause");
+}
+
+void app_exit()
+{
+	system("cls");
+	cout << "**********************************" << endl; 
+	cout << "* 프로그램 종료                  *" << endl;
+	cout << "**********************************" << endl;
+	system("pause");
+
+}
+
+void menuprint()
+{
+	cout << "**********************************" << endl; 
+	cout << "* [1] INSERT                     *" << endl; 
+	cout << "* [2] PRINTALLDATA               *" << endl;
+	cout << "* [3] EXIT                       *" << endl;
+	cout << "**********************************" << endl;
+}
+
+
+void app_run()
+{
+	while(true)
+	{
+		system("cls");
+		menuprint();
+		char ch;
+		ch = getch();		//#include "conio.h"
+		switch(ch)
+		{
+		case '1':	tb.Insert();			break;
+		case '2':   tb.PrintAllData();		break;
+		case '3':   return;
+		}
+		system("pause");
+	}
+}
+
+void main()
+{
+	app_init();
+
+	app_run();
+
+	app_exit();
+}

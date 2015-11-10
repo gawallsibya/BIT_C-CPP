@@ -1,0 +1,272 @@
+1. 두 개의 데이터를 인자로 받아서 name1의 값을 아래와 같이 수정하는
+   함수를 구현하시오.(string 관련 함수 사용 가능)
+   "홍길동님이 로그인 하셨습니다."
+
+void main()	{
+	char name[50] = {"홍길동"};
+	char name1[30]= {"님이 로그인 하셨습니다."};
+
+	foo( name, name1);
+}
+
+
+
+2. str문자열을 보면 알파벳 순서에 맞지 않는 부분이 있다. 
+    두개의 인자를 받아서 알파벳 순서에 맞게 원본을 변경하시오.
+  - foo 함수를 구현하여 str원본 전체를 넘길 것 /
+   goo 함수를 구현하여 수정할 위치의 문자만 넘길 것 
+
+void main()	
+{
+	char str[20] = {"ABCEEFG"};
+	char ch		  = 'D';
+
+	foo( str , ch);
+	goo( str + 3, ch);		// goo ( &str[3])  goo ( *str[3])
+}
+
+
+
+3. pNum을 인자로 받아서 num의 값을 200으로 수정하는 
+foo이름의 함수를 구현하시오.
+
+void main() 
+{
+	int num = 100;
+	int *pNum = &num;
+
+	foo( pNum );
+
+	printf("%d\n", num);
+}
+
+4. 아래와 같은 기능의 함수를 구현하시오.
+   1) name, 인덱스, 저장할 이름을 인자로 받아서 해당 인덱스의 name의 위치에 저장할 이름을 저
+장하는 기능의 foo함수   => name이 2차원 배열의 형태로 넘어가는 경우 
+   2) name, 저장할 이름을 인자로 받아서 이름을 저장하는 기능의 woo함수 
+   => name이 1차원 배열의 형태로 넘어가는 경우 인자를 넘길 때 저장위치로 이동해서 넘기는 경우 
+
+
+void main()  
+{
+	char name[20][20];
+	foo( name, 3, "홍길동");
+	woo( name[3], "홍길동");
+	printf("%s\n", name[3]);
+
+}
+
+5. 아래와 같은 기능의 함수를 구현하시오.
+   1) name[2][10]의 위치에 name1이 가지고 있는 
+   0번째 인덱스의 값을 저장하시오.
+   (단 name함수를 2차원 배열로 넘기고, name1도 1차원 배열로 넘길것)
+   2) name[2][10]의 위치에 name1이 가지고 있는 0번째 인덱스의 값을 저장하시오.
+   (단 name함수를 1차원 배열로 넘기고, name1은 값으로 넘길것)
+
+
+void main()   
+{
+	char name[10][20];
+	char name1[5] = { 'A', 'B', 'C', 'D', 'E' };
+
+	foo( name, name1);
+	woo( name[0], name1[0]);
+
+	printf("%c\n", name[2][10]);
+}
+
+6 아래와 같은 기능의 함수를 구현하시오.
+   pNum을 인자로 넘겨서 scanf함수를 통해 num의 값을 변경시키는 함수를 구현하시오.
+
+
+void main() 
+{
+	int num = 0;
+	int *pNum = &num;
+
+	foo( pNum );
+
+	printf("%d\n", num);
+}
+
+7 아래와 같은 기능의 함수를 구현하시오.
+   1. 다음 기능의 foo함수를 구현하시오. 
+각 데이터를 인자로 받아서 main에 있는 원본의 값을 변경 할 것
+      (단, n은 100 ch는 'A', arr는 "B"로 변경할 것)
+
+   2. 다음 기능의 goo함수를 구현하시오.
+      각 데이터를 인자로 받아서 main에 있는 원본의 값을 변경 할 것
+    (단, n은 101 ch는 'B', arr는 "B"로 변경할 것 / 
+	    foo 함수에서 goo 함수를 호출할 것 )
+   main ==> foo ==> goo 함수의 호출이 끝나면 
+   main에 있는 원본의 값이 n은 101 ch는 'B', arr는 "C"로 변경되어 있어야 한다.
+
+
+void main()	
+{
+	int n;
+	char ch;
+	char arr[2];
+
+	foo( &n, &ch, arr );
+
+	printf("%d : %c : %s\n", n, ch, arr);
+}
+
+===================================================================================
+
+#include <stdio.h>
+#include <string.h>
+
+typedef struct tagDATA DATA;
+struct tagDATA   
+{
+	int		num;
+	char	ch;
+	char	str[20];
+};
+
+
+
+8. main에 있는 data 각각의 원본의 값을 변경시키는 
+    fooN, fooCH, fooARR 를 구현하시오.
+    (단, 리턴값을 통해 변경할 것 / 
+     data.n은 100 data.ch는 'A', data.arr는 "B"로 변경할 것)
+
+int fooN()	{		return 100;		}
+char fooCH()	{		return 'A';		}
+char*fooARR()	{		return "B";		}
+
+void main()  
+{
+	DATA data;
+	data.num		= fooN();
+	data.ch			= fooCH();
+	strcpy( data.str, fooARR());
+}
+
+9. data를 인자로 받아서 원본의 맴버의 값을 수정하는 foo함수를 구현하시오. 
+   (단, data.n은 100 data.ch는 'A', data.arr는 "B"로 변경할 것)
+
+void main()
+{
+	DATA data;
+	foo( &data);
+}
+
+
+
+
+10. data의 각각의 데이터를 인자로 받아서 원본의 맴버의 값을 수정하는
+ foo함수를 구현하시오.
+(즉 전달인자는 3개가 됨 / 
+data.n은 100 data.ch는 'A', data.arr는 "B"로 변경할 것)
+
+
+void main()  
+{
+	DATA data;
+	foo( &data, 100, 'A', "B");
+}
+
+
+11. pDATA를 인자로 받아서 원본데이터인 data의 각 맴버를 
+수정하는 함수를 구현하시오.
+(단, data.n은 100 data.ch는 'A', data.arr는 "B"로 변경할 것)
+
+void main()
+{
+	DATA data;
+	DATA *pDATA = &data;
+	foo( pDATA);
+}
+
+12. pDATA와 data1을 인자로 받아서 data1의 값을 변경하는 함수를 구현하시오.
+    함수 호출 후 data1의 맴버의 값이 data의 맴버의 값과 동일해야 한다.
+
+void main()  
+{
+	DATA data = { 10, 'A', "홍길동"};
+	DATA data1;
+	DATA *pDATA = &data;
+	foo(  &data1,  pDATA);
+}
+
+13. data와 num, ch값을 인자로 받아서 data.num은 num의 값으로, 
+data.ch는 ch값으로 data.arr[4]는 ch값으로 변경하는 foo함수를 구현하시오.
+
+void main()  {
+	int num = 100;
+	char ch = 'B';
+	DATA data = { 10, 'A', "홍길동"};
+
+	foo( &data, num, ch);
+}
+
+14. data 3번째 인덱스의 값을 수정하는 함수를 구현하시오.
+   (단, data.n은 100 data.ch는 'A', data.arr는 "B"로 변경할 것)
+(1) data를 data 형태로 넘겨서 수정하는 foo함수 
+(2) data를 data+3의 형태로 넘겨서 수정하는 goo함수 
+(3) data를 &(data[3].num), &(data[3].ch),data[3].arr 로 넘겨서
+	   수정하는 woo함수 
+
+void main()
+{
+	DATA data[10];
+//	foo( data );
+//	goo( data + 3);
+	woo( &(data[3].num), &(data[3].ch),data[3].str);
+
+	printf("%d: %c: %s\n", data[3].num, data[3].ch, data[3].str);
+}
+
+15. data를 값(복사본)으로  전달 받아서 리턴값으로 변경된 값을 
+ 제공하는 foo함수를 구현하시오. 
+ (단, data.n은 100 data.ch는 'A', data.arr는 "B"로 변경할 것)
+
+void main() 
+{
+	DATA data;
+	data = foo( data );	
+}
+
+16. data 및 data1을 전달해서 data1의 원본의 값을 변경하는 다음과 같은 기능의 함수를 구현하세요.
+(1) foo함수 : data, data1, 2, 3 을 인자로 전달받아서 
+data[2]의 값을 data1[3]으로 변경하는 함수 
+(2) goo함수 : data+2, data1 + 3 을 인자로 전달받아서 data[2]의 값을 data1[3]으로 변경하는 함수 
+(3) woo함수 : data+2, data1 + 3을 인자로 전달받아서  data[3]의 값을 data[0]으로 변경하는 함수 
+
+
+void main()	
+{
+	DATA data[5]  = {   100, 'A', "홍길동", 
+						200, 'B', "공길동", 
+						300, 'C', "김길동", 
+						400, 'D', "훈길동", 
+						500, 'E', "최길동"};
+	DATA data1[5];
+
+	foo(data1,data,  2, 3);
+	goo( data+2, data1 + 3);
+	woo( data+2, data1 +3);
+}
+
+
+17. data와 "김길동"을 인자로 받아서 해당 이름이 
+저장되어 있는 인덱스를 찾아서 그 위치의 값들을 모두 제거하는 
+함수 해당 함수가 호출된 이후 
+data[2].num = 0	data[2].ch  = '0' data[2].arr = '\0'
+으로 변경되어야 한다.
+
+void main()
+{
+	DATA data[5]  = {   100, 'A', "홍길동", 
+						200, 'B', "공길동", 
+						300, 'C', "김길동", 
+						400, 'D', "훈길동", 
+						500, 'E', "최길동"};
+
+	foo( data, "김길동");
+}
+
+

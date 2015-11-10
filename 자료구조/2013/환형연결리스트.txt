@@ -1,0 +1,119 @@
+//----------------------------------------------------------------
+// [ 환형 연결리스트 ]
+//    
+//----------------------------------------------------------------
+
+/*
+1. 환형 연결리스트  & 단순 연결리스트
+
+   1) 공통점 
+     - 동일한 노드 구조 
+	 - 조작하는 함수들은 동일한 모양의 코드를 가진다. 
+
+   2) 차이점 
+     - 마지막 노드는 가장 처음의 노드를 가리키고 있다. 
+	   즉 뱀모양으로 둥근 모양임 
+	   즉 tail이라는 개념이 없다. 
+
+   3)  특  징
+     - 장 점 : 한 노드에서 모든 노드로의 접근이 가능하고, 
+	            삽입과 삭제연산이 편리 
+	 - 단 점 : 특정 노드 검색 시 무한 루프에 빠질 가능성 높음 
+	           -> 해결책 : 검색을 끝낼 수 있는 노드 존재가 필수
+			      헤드(head)를 두는 것도 한 방법임 
+*/
+
+
+
+// Sample 1) 요셉의 문제 
+// 10명의 사람이 시계 방향으로 순서대로 원을 지어 앉아 있다고 가정..
+// 이 때 A로 부터 시작해서 4명 간격으로 사람을 그 원에서 뽑아냄
+// 
+#include <stdio.h>	
+#include <malloc.h>
+
+
+typedef struct _node
+{	
+	int key;	
+	struct _node *next;	
+}node;
+
+node *head;
+
+
+
+// 1부터 k의 값을 갖는 환형 연결리스트 구성 
+void insert_nodes(int k)	
+{
+	node *t;				
+	int i;
+	// 연결리스트의 시작점 
+	t = (node*)malloc(sizeof(node));	
+	t->key = 1;		
+	head   = t;  
+
+	for(i=2; i<=k; i++)	
+	{
+		// t의 다음노드 생성 어떤 의미??
+		t->next = (node*)malloc(sizeof(node));		
+		t = t->next;		
+		t->key	= i;
+	}
+	// 마지막을 처음으로 물림, 환형 생성
+	t->next = head;
+}
+
+
+// 다음 노드를 삭제 
+void delete_after(node *t)	
+{
+	node *s;
+	// s는 현재 삭제하고자 하는 위치
+	s = t->next;	
+	t->next = t->next->next;	
+	free(s);
+}
+
+
+
+// 요셉의 문제 '  n개의 노드를 m간격으로 
+void josephus(int n, int m)	
+{
+	node *t;			int i;
+	// 환형 연결리스트 구성 
+	insert_nodes(n);		
+	t = head;		
+	printf("\nAnswer :");
+
+
+	// 연결리스트 노드가 남아있는 동안 
+	while( t != t->next)		
+	{
+		// m만큼의 거리 이동 
+		for( i=0; i< m-1; i++)			
+			t = t->next;
+
+		// 삭제하고자 하는 node의 key값 출력
+		printf("%d  ", t->next->key);
+
+		// 노드 삭제 
+		delete_after(t);
+	}
+	printf("%d\n", t->key); // 마지막 노드 출력 	
+}
+void main()
+
+
+{
+	int n, m;
+	while(1)
+	{
+		printf("Enter N and M ->");
+		scanf("%d %d", &n, &m);
+		if( n <=0 || m <=0)
+			return;
+		josephus(n, m);
+	}
+
+}

@@ -1,0 +1,77 @@
+// skey.h
+
+#define F1	0x3b00			
+#define F2	0x3c00
+#define F3	0x3d00		
+#define F4	0x3e00
+#define F5	0x3f00			
+#define F6	0x4000
+#define F7  	0x4100			
+#define F8	0x4200
+#define F9  	0x4300			
+#define F10	0x4400
+#define F11 	0xe085			
+#define F12 	0xe086
+#define ESC	0x11b
+
+// lib.h
+
+//-------------------------------------------------------------------------------
+//  [ FUNTION KEY 입력 함수 ]
+//-------------------------------------------------------------------------------
+unsigned fnGetBKey();
+
+
+// lib.c
+#include "std.h"
+
+
+//-------------------------------------------------------------------------------
+//  [ FUNTION KEY 입력 함수 ]
+//-------------------------------------------------------------------------------
+unsigned fnGetBKey()
+{
+	unsigned key;
+	key = getch();
+	if(key)
+	{
+		if(key==27)
+		{
+			return 0x11b;
+		}
+		if(key==0xe0)
+		{
+
+			unsigned k2;
+
+			k2 = getch();
+			key = (key<<8)|k2;
+		}
+		return key;
+	}
+	else
+	{
+		key = getch();
+		key = key<<8;
+		return key;
+	}
+	return key;
+}
+
+----------------------- 사용 예 ------------------------------------------
+void fnRun()
+{
+	int key;
+
+	while((key = fnGetBKey())!=ESC)
+	{
+		switch(key)
+		{
+		case F1:	printf("board_insert()\n");		break;
+		case F2:	printf("board_search()\n");		break;
+		case F3:	printf("board_delete()\n");		break;
+		case F4:	printf("board_modify()\n");		break;
+		default:    printf("Not defined menu\n");   break;
+		}
+	}
+}

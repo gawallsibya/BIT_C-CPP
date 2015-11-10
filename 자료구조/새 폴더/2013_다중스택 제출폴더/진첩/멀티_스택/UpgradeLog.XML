@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="20121213+">
+</Property><Property Name="解决方案文件" Value="C:\Users\Administrator\Desktop\20121213+\20121213+.sln">
+</Property><Property Name="用户选项文件" Value="C:\Users\Administrator\Desktop\20121213+\20121213+.suo">
+</Property><Property Name="Date" Value="2012年12月14日星期五">
+</Property><Property Name="Time" Value="11:46">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="20121213+.sln" Description="文件已成功备份为 C:\Users\Administrator\Desktop\20121213+\20121213+.sln.old">
+</Event><Event ErrorLevel="0" Project="" Source="20121213+.suo" Description="文件已成功备份为 C:\Users\Administrator\Desktop\20121213+\20121213+.suo.old">
+</Event><Event ErrorLevel="0" Project="20121213+" Source="20121213+\20121213+.vcproj" Description="Converting project file 'C:\Users\Administrator\Desktop\20121213+\20121213+\20121213+.vcproj'.">
+</Event><Event ErrorLevel="1" Project="20121213+" Source="20121213+\20121213+.vcproj" Description="VCWebServiceProxyGeneratorTool is no longer supported. The tool has been removed from your project settings.">
+</Event><Event ErrorLevel="0" Project="20121213+" Source="20121213+\20121213+.vcproj" Description="Done converting to new project file 'C:\Users\Administrator\Desktop\20121213+\20121213+\20121213+.vcxproj'.">
+</Event><Event ErrorLevel="3" Project="20121213+" Source="20121213+\20121213+.vcproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="20121213+.sln" Description="成功转换解决方案">
+</Event><Event ErrorLevel="3" Project="" Source="20121213+.sln" Description="Converted">
+</Event></UpgradeLog>

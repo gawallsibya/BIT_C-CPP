@@ -1,0 +1,17 @@
+1. IO 함수 ==> IO 객체 
+2. type ==> bool 형 타입 추가 
+3. struct ==> tag명이 타입명이다.
+4. reference(참조자)
+   = 사용 유형2
+5. scop 연산자
+
+(내일)
+new / delete 연산자  : malloc free의 CPP 버전
+overloading 개념( 함수)
+기본값(함수)
+inline함수(함수)
+========================
+C & C++  동일 문법
+enum
+비트필드 구조체
+static & extern 

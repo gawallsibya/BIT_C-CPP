@@ -1,0 +1,144 @@
+// 렌덤 함수 사용
+/*
+2. 가감승제 연산 문제 자동 출제 
+   랜덤하게 10개의 문제 생성하여 리턴하는 함수 구현
+   아래 코드를 참조 할 것
+   문제를 저장하는 구조체 배열 정의 할 것
+*/
+// 10 + 33 
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define DATA_MAX	10
+
+typedef struct tagOper Oper;
+struct tagOper
+{
+	int num1;
+	int op;
+	int num2;
+	int inputnum;
+	int result;
+};
+
+void fn_CreateExample( Oper *pOper);
+void fn_RunExample( Oper *pOper);
+void fn_ResultExample( const Oper *pOper);
+
+void main()
+{
+	Oper oper[DATA_MAX];
+
+	srand(time(NULL));
+
+	fn_CreateExample(oper);
+
+	fn_RunExample(oper);
+
+	fn_ResultExample(oper);
+
+	/*
+	int i;
+
+	// 초기화 
+	
+
+	// 실행
+	for(i=0; i<10; i++)
+	{
+		
+	}
+	*/
+}
+
+void fn_CreateExample( Oper *pOper)
+{
+	int i;
+	for(i=0; i<DATA_MAX; i++)
+	{
+		//1. 피연산자
+		pOper[i].num1 = rand()%100;	
+
+		//2. 연산자
+		pOper[i].op	 = rand()%4;
+
+		//3. 피연산자 
+		do
+		{
+			pOper[i].num2 = rand()%100;
+		}while(pOper[i].num2 == 0 );
+	}
+}
+
+char NumToOper( int num);
+int  DataToResult( const Oper *pOper);
+
+void fn_RunExample( Oper *pOper)
+{
+	int i;
+	for(i=0; i<DATA_MAX; i++)
+	{
+		printf("[%2d번] %2d %c %2d = ",
+			i+1, pOper[i].num1, NumToOper(pOper[i].op) ,pOper[i].num2);
+				
+		scanf("%d", &pOper[i].inputnum);
+
+		// 정답과 오답 판단
+		pOper[i].result = DataToResult( &pOper[i]);
+	}
+}
+
+
+char NumToOper( int num)
+{
+	char ch;
+	switch( num )
+	{
+	case 0:	ch = '+'; break;
+	case 1: ch = '-'; break;
+	case 2: ch = '*'; break;
+	case 3: ch = '/'; break;
+	}
+	return ch;
+}
+
+int  DataToResult( const Oper *pOper)
+{
+	int result;
+	switch( pOper->op )
+	{
+	case 0:	result = pOper->num1 + pOper->num2;  break;
+	case 1: result = pOper->num1 - pOper->num2; break;
+	case 2: result = pOper->num1 * pOper->num2; break;
+	case 3: result = pOper->num1 / pOper->num2; break;
+	}
+
+	if( result == pOper->inputnum)
+		return 1;
+	else
+		return 0;
+}
+
+char ResultToOX(int num)
+{
+	if(num == 1)
+		return 'O';
+	return 'X';
+}
+void fn_ResultExample( const Oper *pOper)
+{
+	int i;
+	printf("▶ 세부 내용\n");
+    printf("-------------------------------------------\n");
+    printf("번호    문제         입력값	 정답여부\n");
+    printf("-------------------------------------------\n");
+
+	for(i=0; i<DATA_MAX; i++)
+	{
+		printf("[%2d]    %2d   %c   %2d  %2d   %c\n",
+				i+1, pOper[i].num1, NumToOper(pOper[i].op) ,pOper[i].num2,
+				pOper[i].inputnum, ResultToOX(pOper[i].result));
+	}             
+	printf("-------------------------------------------\n");
+}

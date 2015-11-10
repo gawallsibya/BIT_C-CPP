@@ -1,0 +1,81 @@
+1일차 : 단일연결리스트
+        과제) 
+        기능1 : 사용자가 문자를 입력하면 문자 하나를 하나의 노드에 담아서 리스트 구성
+                단) push_front, push_back 2가지 기능을 작성
+
+                예) 문자 입력 : aafe adfe ACBC
+                    입력 결과 : 총 14개의 문자가 리스트에 저장되었습니다.
+
+
+        기능2 : 노드 순회 출력
+                리스트의 첫번째 노드부터 순회하며 문자 출력
+                
+                예) 문자의 개수 : 14개
+                    문자 출력   : aafe adfe ACBC            
+          
+
+        기능3 : 노드 검색
+                출력된 문자열 중 하나의 문자를 선택하면 그 문자가 저장된 노드의 주소값을 리턴
+                단, 동일문자가 여러개 입력되었을 경우 첫번째 저장 문자 노드의 주소값 리턴
+
+                예) 문자의 개수 : 14개
+                    문자 출력   : aafe adfe ACBC   
+ 
+                    검색 문자   : a
+                    검색 결과   : 주소값 : 0xXXXXX, 데이터 : a,  다음 노드의 주소값 : 0xXXXXX
+
+
+
+        기능4 : 수정
+                출력된 문자열 중 하나의 문자를 선택하여 해당문자가 소문자라면 대문자로, 대문자라면 소문자로 변경
+
+                예) 문자의 개수 : 14개
+                    문자 출력   : aafe adfe ACBC  
+
+                    수정 문자   : a
+
+   	       문자의 개수 : 14개
+                    문자 출력   : Aafe adfe ACBC
+
+
+        기능5 : 삭제
+                출력된 문자열 중 하나의 문자를 선택하여 해당 문자가 저장된 노드를 삭제
+
+                예) 문자의 개수 : 14개
+                    문자 출력   : aafe adfe ACBC  
+
+                    삭제 문자   : a
+
+                    문자의 개수 : 13개
+                    문자 출력   : afe adfe ACBC  
+  
+
+        단) 노드의 구조는 
+            typedef struct tagNODE NODE;
+            struct tagNODE
+            {
+		char data;
+ 		struct tagNODE *next;
+            };
+
+            typedef struct tagLIST LIST;
+            struct tagLIST
+             {
+		NODE * head;		// start
+		int    count;		// 저장개수
+	};
+	LIST    list;
+
+	   
+
+
+
+
+
+
+
+
+
+
+
+

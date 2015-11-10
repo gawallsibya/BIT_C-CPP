@@ -1,0 +1,81 @@
+주문 관리 프로그램
+- 메뉴에 관련된 정보가 저장됨(삽입, 삭제, 수정, 검색, 출력)
+- 주문 관련된 정보가 저장됨(삽입, 삭제, 수정, 검색, 출력  )
+
+1) 메뉴 클래스 구현  
+   - menu, container, menumanager
+   - App에서 test
+
+
+2) Order 클래스 구현
+
+3) Manager 클래스 구현
+
+
+
+
+메뉴데이터
+Menu
+  - char  m_name[20]		// 이름( 생성자 초기화)
+  - int     m_price			// 가격( 생성자 초기화)
+  - int    m_count			// 판매수량 = 0 
+
+
+MenuManager
+  - Container con
+  + void MenuPrint()
+  + void insert()
+  + void printall()
+  + void search()			// 메뉴의 이름
+  + void modify()			// 메뉴의 이름
+  + void delete()			// 메뉴의 이름  ==> (현재 위치 이동 하지 않기)
+
+
+Container
+  - Menu** data;		// 초기화	 모든 데이터를 NULL로 초기화 
+  - int        max;		// 저장 최대 개수
+  - int        size;		// 현재 저장된 개수
+  + Container( int _max =10)   
+  + bool     push_back(Menu*)	// 빈공간을 찾아서 저장
+  + int        GetSize()
+  + int 	  GetMax()
+  + Menu*  GetData(int idx)
+  + Menu*  delete(int idx)
+//========================================================================
+  
+
+
+주문데이터
+OrderElem
+  - menu_idx
+  - menu_count
+
+
+Order
+  - OrderElem *p;
+  - int        m_count;
+
+
+OrderManager
+  - Container con  <= Order를 저장
+
+  - order_insert
+  - order_search
+  - order_printall
+
+
+Manager(추상 클래스)
+ + menuprint
+ + insert
+ + printall
+ + search
+ + modify
+ + delete 
+
+App
+- MenuManager ma
+- Ordermanager or
+
+- 2가지 기능
+  1) 메뉴  2) 주문 3) 종료
+  

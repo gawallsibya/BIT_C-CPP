@@ -1,0 +1,32 @@
+//main.cpp
+
+//1) CD 클래스를 정의 및 구현  cd.h / cpp
+/*
+	 - char name[20];
+	 - char track[3][20];		// 제목 3개..
+
+     + 생성자()
+	 + 생성자(char*, char*, char*, char*)
+
+	 // get & set method
+	 char* GetName() const;
+	 char* GetTrack(int) const;
+
+	// method
+	void DataPrint()		// CD 이름.
+							// Track 1 :  XXXXXXXXXXX
+							// Track 2 :  OOOOO
+							// Track 3 :  QQQQQ
+CD* CreateCD()
+{
+	1. CD 생성에 필요한 정보를 사용자 입력...
+	2. CD 객체를 동적으로 생성해서 리턴...
+ }
+void main()
+{
+	CD* pCD[3];
+	for(int i=0; i<3; i++)
+		pCD[i ] = CreateCD();		// 3번 호출 
+}
+*/
+
